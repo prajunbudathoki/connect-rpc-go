@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package proto.products.v1;
+option go_package = "myapp/api/products/v1;productsv1";
+
+
+message CreateProductRequest {
+  string name = 1;
+}
+
+message CreateProductResponse {
+  string name = 1;
+  int64 id = 2;
+}
+
+message GetAllProductsRequest {}
+
+message GetAllProductsRespone {
+  repeated CreateProductResponse products = 1;
+}
+
+service ProductService {
+  rpc GetAllProducts(GetAllProductsRequest) returns (GetAllProductsRespone) {}
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
+
+  }
+}

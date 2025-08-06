@@ -1,0 +1,18 @@
+version: v2
+plugins:
+  - local: protoc-gen-go
+    strategy: directory
+    out: api
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-connect-go
+    strategy: directory
+    out: api
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-es
+    out: front/src/gen
+    # Also generate any imported dependencies
+    include_imports: true
+    # Add more plugin options here
+    opt: target=ts
