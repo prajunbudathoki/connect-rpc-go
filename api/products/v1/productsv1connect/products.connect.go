@@ -36,15 +36,27 @@ const (
 	// ProductServiceGetAllProductsProcedure is the fully-qualified name of the ProductService's
 	// GetAllProducts RPC.
 	ProductServiceGetAllProductsProcedure = "/proto.products.v1.ProductService/GetAllProducts"
+	// ProductServiceGetProductProcedure is the fully-qualified name of the ProductService's GetProduct
+	// RPC.
+	ProductServiceGetProductProcedure = "/proto.products.v1.ProductService/GetProduct"
 	// ProductServiceCreateProductProcedure is the fully-qualified name of the ProductService's
 	// CreateProduct RPC.
 	ProductServiceCreateProductProcedure = "/proto.products.v1.ProductService/CreateProduct"
+	// ProductServiceUpdateProductProcedure is the fully-qualified name of the ProductService's
+	// UpdateProduct RPC.
+	ProductServiceUpdateProductProcedure = "/proto.products.v1.ProductService/UpdateProduct"
+	// ProductServiceDeleteProductProcedure is the fully-qualified name of the ProductService's
+	// DeleteProduct RPC.
+	ProductServiceDeleteProductProcedure = "/proto.products.v1.ProductService/DeleteProduct"
 )
 
 // ProductServiceClient is a client for the proto.products.v1.ProductService service.
 type ProductServiceClient interface {
 	GetAllProducts(context.Context, *connect.Request[v1.GetAllProductsRequest]) (*connect.Response[v1.GetAllProductsRespone], error)
+	GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error)
 	CreateProduct(context.Context, *connect.Request[v1.CreateProductRequest]) (*connect.Response[v1.CreateProductResponse], error)
+	UpdateProduct(context.Context, *connect.Request[v1.UpdateProductRequest]) (*connect.Response[v1.UpdateProductResponse], error)
+	DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
 }
 
 // NewProductServiceClient constructs a client for the proto.products.v1.ProductService service. By
@@ -64,10 +76,28 @@ func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(productServiceMethods.ByName("GetAllProducts")),
 			connect.WithClientOptions(opts...),
 		),
+		getProduct: connect.NewClient[v1.GetProductRequest, v1.GetProductResponse](
+			httpClient,
+			baseURL+ProductServiceGetProductProcedure,
+			connect.WithSchema(productServiceMethods.ByName("GetProduct")),
+			connect.WithClientOptions(opts...),
+		),
 		createProduct: connect.NewClient[v1.CreateProductRequest, v1.CreateProductResponse](
 			httpClient,
 			baseURL+ProductServiceCreateProductProcedure,
 			connect.WithSchema(productServiceMethods.ByName("CreateProduct")),
+			connect.WithClientOptions(opts...),
+		),
+		updateProduct: connect.NewClient[v1.UpdateProductRequest, v1.UpdateProductResponse](
+			httpClient,
+			baseURL+ProductServiceUpdateProductProcedure,
+			connect.WithSchema(productServiceMethods.ByName("UpdateProduct")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteProduct: connect.NewClient[v1.DeleteProductRequest, v1.DeleteProductResponse](
+			httpClient,
+			baseURL+ProductServiceDeleteProductProcedure,
+			connect.WithSchema(productServiceMethods.ByName("DeleteProduct")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -76,7 +106,10 @@ func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 // productServiceClient implements ProductServiceClient.
 type productServiceClient struct {
 	getAllProducts *connect.Client[v1.GetAllProductsRequest, v1.GetAllProductsRespone]
+	getProduct     *connect.Client[v1.GetProductRequest, v1.GetProductResponse]
 	createProduct  *connect.Client[v1.CreateProductRequest, v1.CreateProductResponse]
+	updateProduct  *connect.Client[v1.UpdateProductRequest, v1.UpdateProductResponse]
+	deleteProduct  *connect.Client[v1.DeleteProductRequest, v1.DeleteProductResponse]
 }
 
 // GetAllProducts calls proto.products.v1.ProductService.GetAllProducts.
@@ -84,15 +117,33 @@ func (c *productServiceClient) GetAllProducts(ctx context.Context, req *connect.
 	return c.getAllProducts.CallUnary(ctx, req)
 }
 
+// GetProduct calls proto.products.v1.ProductService.GetProduct.
+func (c *productServiceClient) GetProduct(ctx context.Context, req *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error) {
+	return c.getProduct.CallUnary(ctx, req)
+}
+
 // CreateProduct calls proto.products.v1.ProductService.CreateProduct.
 func (c *productServiceClient) CreateProduct(ctx context.Context, req *connect.Request[v1.CreateProductRequest]) (*connect.Response[v1.CreateProductResponse], error) {
 	return c.createProduct.CallUnary(ctx, req)
 }
 
+// UpdateProduct calls proto.products.v1.ProductService.UpdateProduct.
+func (c *productServiceClient) UpdateProduct(ctx context.Context, req *connect.Request[v1.UpdateProductRequest]) (*connect.Response[v1.UpdateProductResponse], error) {
+	return c.updateProduct.CallUnary(ctx, req)
+}
+
+// DeleteProduct calls proto.products.v1.ProductService.DeleteProduct.
+func (c *productServiceClient) DeleteProduct(ctx context.Context, req *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error) {
+	return c.deleteProduct.CallUnary(ctx, req)
+}
+
 // ProductServiceHandler is an implementation of the proto.products.v1.ProductService service.
 type ProductServiceHandler interface {
 	GetAllProducts(context.Context, *connect.Request[v1.GetAllProductsRequest]) (*connect.Response[v1.GetAllProductsRespone], error)
+	GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error)
 	CreateProduct(context.Context, *connect.Request[v1.CreateProductRequest]) (*connect.Response[v1.CreateProductResponse], error)
+	UpdateProduct(context.Context, *connect.Request[v1.UpdateProductRequest]) (*connect.Response[v1.UpdateProductResponse], error)
+	DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
 }
 
 // NewProductServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -108,18 +159,42 @@ func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.Handler
 		connect.WithSchema(productServiceMethods.ByName("GetAllProducts")),
 		connect.WithHandlerOptions(opts...),
 	)
+	productServiceGetProductHandler := connect.NewUnaryHandler(
+		ProductServiceGetProductProcedure,
+		svc.GetProduct,
+		connect.WithSchema(productServiceMethods.ByName("GetProduct")),
+		connect.WithHandlerOptions(opts...),
+	)
 	productServiceCreateProductHandler := connect.NewUnaryHandler(
 		ProductServiceCreateProductProcedure,
 		svc.CreateProduct,
 		connect.WithSchema(productServiceMethods.ByName("CreateProduct")),
 		connect.WithHandlerOptions(opts...),
 	)
+	productServiceUpdateProductHandler := connect.NewUnaryHandler(
+		ProductServiceUpdateProductProcedure,
+		svc.UpdateProduct,
+		connect.WithSchema(productServiceMethods.ByName("UpdateProduct")),
+		connect.WithHandlerOptions(opts...),
+	)
+	productServiceDeleteProductHandler := connect.NewUnaryHandler(
+		ProductServiceDeleteProductProcedure,
+		svc.DeleteProduct,
+		connect.WithSchema(productServiceMethods.ByName("DeleteProduct")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/proto.products.v1.ProductService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ProductServiceGetAllProductsProcedure:
 			productServiceGetAllProductsHandler.ServeHTTP(w, r)
+		case ProductServiceGetProductProcedure:
+			productServiceGetProductHandler.ServeHTTP(w, r)
 		case ProductServiceCreateProductProcedure:
 			productServiceCreateProductHandler.ServeHTTP(w, r)
+		case ProductServiceUpdateProductProcedure:
+			productServiceUpdateProductHandler.ServeHTTP(w, r)
+		case ProductServiceDeleteProductProcedure:
+			productServiceDeleteProductHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -133,6 +208,18 @@ func (UnimplementedProductServiceHandler) GetAllProducts(context.Context, *conne
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.products.v1.ProductService.GetAllProducts is not implemented"))
 }
 
+func (UnimplementedProductServiceHandler) GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.products.v1.ProductService.GetProduct is not implemented"))
+}
+
 func (UnimplementedProductServiceHandler) CreateProduct(context.Context, *connect.Request[v1.CreateProductRequest]) (*connect.Response[v1.CreateProductResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.products.v1.ProductService.CreateProduct is not implemented"))
+}
+
+func (UnimplementedProductServiceHandler) UpdateProduct(context.Context, *connect.Request[v1.UpdateProductRequest]) (*connect.Response[v1.UpdateProductResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.products.v1.ProductService.UpdateProduct is not implemented"))
+}
+
+func (UnimplementedProductServiceHandler) DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("proto.products.v1.ProductService.DeleteProduct is not implemented"))
 }
