@@ -1,10 +1,25 @@
 version: "2"
+overrides:
+  go:
+    overrides:
 sql:
   - engine: "postgresql"
-    queries: "query.sql"
-    schema: "schema.sql"
+    queries: "repositories/products/queries.sql"
+    schema: "migrations"
     gen:
       go:
-        package: "product"
-        out: "product"
+        package: "productsrepo"
         sql_package: "pgx/v5"
+        out: "repositories/products"
+        emit_pointers_for_null_types: true
+        omit_unused_structs: true
+  - engine: "postgresql"
+    queries: "repositories/users/queries.sql"
+    schema: "migrations"
+    gen:
+      go:
+        package: "usersrepo"
+        sql_package: "pgx/v5"
+        out: "repositories/users"
+        emit_pointers_for_null_types: true
+        omit_unused_structs: true

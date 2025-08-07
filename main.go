@@ -1,6 +1,8 @@
 package main
 
 import (
+	"database/sql"
+	"log"
 	"myapp/api/products/v1/productsv1connect"
 	"myapp/products"
 	"net/http"
@@ -52,6 +54,7 @@ func newCORS() *cors.Cors {
 func main() {
 	mux := http.NewServeMux()
 	path, handler := productsv1connect.NewProductServiceHandler(&products.ProductHandler{})
+
 	mux.Handle(path, handler)
 	srv := &http.Server{
 		Addr: ":8080",
@@ -64,6 +67,17 @@ func main() {
 		WriteTimeout:      5 * time.Minute,
 		MaxHeaderBytes:    8 * 1024, // 8KiB
 	}
+
+	// db conn
+	connStr := "postgres://postgres:your_password@localhost:5432/sqlctest?sslmode=disable"
+	dbConn, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Fatalf("failed to open connections : %v", err)
+	}
+	if err := dbConn.Ping(); err != nil {
+		log.Fatalf("failed to ping DB: %v", err)
+	}
+	
 
 	srv.ListenAndServe()
 }

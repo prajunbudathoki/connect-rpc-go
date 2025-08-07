@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "../logo.svg";
 import { productsClient } from "@/lib/api";
 
 export const Route = createFileRoute("/")({

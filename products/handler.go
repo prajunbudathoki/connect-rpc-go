@@ -2,13 +2,15 @@ package products
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	productsv1 "myapp/api/products/v1"
-
+	
 	"connectrpc.com/connect"
 )
 
 type ProductHandler struct {
+	DB *sql.DB
 }
 
 func (p *ProductHandler) CreateProduct(p0 context.Context, p1 *connect.Request[productsv1.CreateProductRequest]) (*connect.Response[productsv1.CreateProductResponse], error) {
