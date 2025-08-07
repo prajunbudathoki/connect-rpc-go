@@ -33,7 +33,6 @@ function RouteComponent() {
           description: value.description,
           price: value.price,
         });
-        console.log("successs");
         toast.success("Product updated successfully");
         navigate({ to: "/" });
       } catch (error) {
