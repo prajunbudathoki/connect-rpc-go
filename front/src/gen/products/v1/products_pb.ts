@@ -10,7 +10,39 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file products/v1/products.proto.
  */
 export const file_products_v1_products: GenFile = /*@__PURE__*/
-  fileDesc("Chpwcm9kdWN0cy92MS9wcm9kdWN0cy5wcm90bxIRcHJvdG8ucHJvZHVjdHMudjEiJAoUQ3JlYXRlUHJvZHVjdFJlcXVlc3QSDAoEbmFtZRgBIAEoCSIxChVDcmVhdGVQcm9kdWN0UmVzcG9uc2USDAoEbmFtZRgBIAEoCRIKCgJpZBgCIAEoAyIXChVHZXRBbGxQcm9kdWN0c1JlcXVlc3QiUwoVR2V0QWxsUHJvZHVjdHNSZXNwb25lEjoKCHByb2R1Y3RzGAEgAygLMigucHJvdG8ucHJvZHVjdHMudjEuQ3JlYXRlUHJvZHVjdFJlc3BvbnNlMt4BCg5Qcm9kdWN0U2VydmljZRJmCg5HZXRBbGxQcm9kdWN0cxIoLnByb3RvLnByb2R1Y3RzLnYxLkdldEFsbFByb2R1Y3RzUmVxdWVzdBooLnByb3RvLnByb2R1Y3RzLnYxLkdldEFsbFByb2R1Y3RzUmVzcG9uZSIAEmQKDUNyZWF0ZVByb2R1Y3QSJy5wcm90by5wcm9kdWN0cy52MS5DcmVhdGVQcm9kdWN0UmVxdWVzdBooLnByb3RvLnByb2R1Y3RzLnYxLkNyZWF0ZVByb2R1Y3RSZXNwb25zZSIAQiJaIG15YXBwL2FwaS9wcm9kdWN0cy92MTtwcm9kdWN0c3YxYgZwcm90bzM");
+  fileDesc("Chpwcm9kdWN0cy92MS9wcm9kdWN0cy5wcm90bxIRcHJvdG8ucHJvZHVjdHMudjEiXAoHUHJvZHVjdBIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEg0KBXByaWNlGAMgASgDEhgKC2Rlc2NyaXB0aW9uGAQgASgJSACIAQFCDgoMX2Rlc2NyaXB0aW9uIl0KFENyZWF0ZVByb2R1Y3RSZXF1ZXN0EgwKBG5hbWUYASABKAkSDQoFcHJpY2UYAiABKAMSGAoLZGVzY3JpcHRpb24YAyABKAlIAIgBAUIOCgxfZGVzY3JpcHRpb24iQQoVQ3JlYXRlUHJvZHVjdFJlc3BvbnNlEigKBGRhdGEYASABKAsyGi5wcm90by5wcm9kdWN0cy52MS5Qcm9kdWN0IhcKFUdldEFsbFByb2R1Y3RzUmVxdWVzdCJFChVHZXRBbGxQcm9kdWN0c1Jlc3BvbmUSLAoIcHJvZHVjdHMYASADKAsyGi5wcm90by5wcm9kdWN0cy52MS5Qcm9kdWN0Ih8KEUdldFByb2R1Y3RSZXF1ZXN0EgoKAmlkGAEgASgDIj4KEkdldFByb2R1Y3RSZXNwb25zZRIoCgRkYXRhGAEgASgLMhoucHJvdG8ucHJvZHVjdHMudjEuUHJvZHVjdCKGAQoUVXBkYXRlUHJvZHVjdFJlcXVlc3QSCgoCaWQYASABKAMSEQoEbmFtZRgCIAEoCUgAiAEBEhIKBXByaWNlGAMgASgDSAGIAQESGAoLZGVzY3JpcHRpb24YBCABKAlIAogBAUIHCgVfbmFtZUIICgZfcHJpY2VCDgoMX2Rlc2NyaXB0aW9uIkEKFVVwZGF0ZVByb2R1Y3RSZXNwb25zZRIoCgRkYXRhGAEgASgLMhoucHJvdG8ucHJvZHVjdHMudjEuUHJvZHVjdCIiChREZWxldGVQcm9kdWN0UmVxdWVzdBIKCgJpZBgBIAEoAyIpChVEZWxldGVQcm9kdWN0UmVzcG9uc2USEAoIc3VjY2Nlc3MYASABKAgyhwQKDlByb2R1Y3RTZXJ2aWNlEmYKDkdldEFsbFByb2R1Y3RzEigucHJvdG8ucHJvZHVjdHMudjEuR2V0QWxsUHJvZHVjdHNSZXF1ZXN0GigucHJvdG8ucHJvZHVjdHMudjEuR2V0QWxsUHJvZHVjdHNSZXNwb25lIgASWwoKR2V0UHJvZHVjdBIkLnByb3RvLnByb2R1Y3RzLnYxLkdldFByb2R1Y3RSZXF1ZXN0GiUucHJvdG8ucHJvZHVjdHMudjEuR2V0UHJvZHVjdFJlc3BvbnNlIgASZAoNQ3JlYXRlUHJvZHVjdBInLnByb3RvLnByb2R1Y3RzLnYxLkNyZWF0ZVByb2R1Y3RSZXF1ZXN0GigucHJvdG8ucHJvZHVjdHMudjEuQ3JlYXRlUHJvZHVjdFJlc3BvbnNlIgASZAoNVXBkYXRlUHJvZHVjdBInLnByb3RvLnByb2R1Y3RzLnYxLlVwZGF0ZVByb2R1Y3RSZXF1ZXN0GigucHJvdG8ucHJvZHVjdHMudjEuVXBkYXRlUHJvZHVjdFJlc3BvbnNlIgASZAoNRGVsZXRlUHJvZHVjdBInLnByb3RvLnByb2R1Y3RzLnYxLkRlbGV0ZVByb2R1Y3RSZXF1ZXN0GigucHJvdG8ucHJvZHVjdHMudjEuRGVsZXRlUHJvZHVjdFJlc3BvbnNlIgBCIlogbXlhcHAvYXBpL3Byb2R1Y3RzL3YxO3Byb2R1Y3RzdjFiBnByb3RvMw");
+
+/**
+ * @generated from message proto.products.v1.Product
+ */
+export type Product = Message<"proto.products.v1.Product"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * @generated from field: int64 price = 3;
+   */
+  price: bigint;
+
+  /**
+   * @generated from field: optional string description = 4;
+   */
+  description?: string;
+};
+
+/**
+ * Describes the message proto.products.v1.Product.
+ * Use `create(ProductSchema)` to create a new message.
+ */
+export const ProductSchema: GenMessage<Product> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 0);
 
 /**
  * @generated from message proto.products.v1.CreateProductRequest
@@ -20,6 +52,16 @@ export type CreateProductRequest = Message<"proto.products.v1.CreateProductReque
    * @generated from field: string name = 1;
    */
   name: string;
+
+  /**
+   * @generated from field: int64 price = 2;
+   */
+  price: bigint;
+
+  /**
+   * @generated from field: optional string description = 3;
+   */
+  description?: string;
 };
 
 /**
@@ -27,21 +69,16 @@ export type CreateProductRequest = Message<"proto.products.v1.CreateProductReque
  * Use `create(CreateProductRequestSchema)` to create a new message.
  */
 export const CreateProductRequestSchema: GenMessage<CreateProductRequest> = /*@__PURE__*/
-  messageDesc(file_products_v1_products, 0);
+  messageDesc(file_products_v1_products, 1);
 
 /**
  * @generated from message proto.products.v1.CreateProductResponse
  */
 export type CreateProductResponse = Message<"proto.products.v1.CreateProductResponse"> & {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: proto.products.v1.Product data = 1;
    */
-  name: string;
-
-  /**
-   * @generated from field: int64 id = 2;
-   */
-  id: bigint;
+  data?: Product;
 };
 
 /**
@@ -49,7 +86,7 @@ export type CreateProductResponse = Message<"proto.products.v1.CreateProductResp
  * Use `create(CreateProductResponseSchema)` to create a new message.
  */
 export const CreateProductResponseSchema: GenMessage<CreateProductResponse> = /*@__PURE__*/
-  messageDesc(file_products_v1_products, 1);
+  messageDesc(file_products_v1_products, 2);
 
 /**
  * @generated from message proto.products.v1.GetAllProductsRequest
@@ -62,16 +99,16 @@ export type GetAllProductsRequest = Message<"proto.products.v1.GetAllProductsReq
  * Use `create(GetAllProductsRequestSchema)` to create a new message.
  */
 export const GetAllProductsRequestSchema: GenMessage<GetAllProductsRequest> = /*@__PURE__*/
-  messageDesc(file_products_v1_products, 2);
+  messageDesc(file_products_v1_products, 3);
 
 /**
  * @generated from message proto.products.v1.GetAllProductsRespone
  */
 export type GetAllProductsRespone = Message<"proto.products.v1.GetAllProductsRespone"> & {
   /**
-   * @generated from field: repeated proto.products.v1.CreateProductResponse products = 1;
+   * @generated from field: repeated proto.products.v1.Product products = 1;
    */
-  products: CreateProductResponse[];
+  products: Product[];
 };
 
 /**
@@ -79,7 +116,124 @@ export type GetAllProductsRespone = Message<"proto.products.v1.GetAllProductsRes
  * Use `create(GetAllProductsResponeSchema)` to create a new message.
  */
 export const GetAllProductsResponeSchema: GenMessage<GetAllProductsRespone> = /*@__PURE__*/
-  messageDesc(file_products_v1_products, 3);
+  messageDesc(file_products_v1_products, 4);
+
+/**
+ * @generated from message proto.products.v1.GetProductRequest
+ */
+export type GetProductRequest = Message<"proto.products.v1.GetProductRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message proto.products.v1.GetProductRequest.
+ * Use `create(GetProductRequestSchema)` to create a new message.
+ */
+export const GetProductRequestSchema: GenMessage<GetProductRequest> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 5);
+
+/**
+ * @generated from message proto.products.v1.GetProductResponse
+ */
+export type GetProductResponse = Message<"proto.products.v1.GetProductResponse"> & {
+  /**
+   * @generated from field: proto.products.v1.Product data = 1;
+   */
+  data?: Product;
+};
+
+/**
+ * Describes the message proto.products.v1.GetProductResponse.
+ * Use `create(GetProductResponseSchema)` to create a new message.
+ */
+export const GetProductResponseSchema: GenMessage<GetProductResponse> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 6);
+
+/**
+ * @generated from message proto.products.v1.UpdateProductRequest
+ */
+export type UpdateProductRequest = Message<"proto.products.v1.UpdateProductRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: optional string name = 2;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: optional int64 price = 3;
+   */
+  price?: bigint;
+
+  /**
+   * @generated from field: optional string description = 4;
+   */
+  description?: string;
+};
+
+/**
+ * Describes the message proto.products.v1.UpdateProductRequest.
+ * Use `create(UpdateProductRequestSchema)` to create a new message.
+ */
+export const UpdateProductRequestSchema: GenMessage<UpdateProductRequest> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 7);
+
+/**
+ * @generated from message proto.products.v1.UpdateProductResponse
+ */
+export type UpdateProductResponse = Message<"proto.products.v1.UpdateProductResponse"> & {
+  /**
+   * @generated from field: proto.products.v1.Product data = 1;
+   */
+  data?: Product;
+};
+
+/**
+ * Describes the message proto.products.v1.UpdateProductResponse.
+ * Use `create(UpdateProductResponseSchema)` to create a new message.
+ */
+export const UpdateProductResponseSchema: GenMessage<UpdateProductResponse> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 8);
+
+/**
+ * @generated from message proto.products.v1.DeleteProductRequest
+ */
+export type DeleteProductRequest = Message<"proto.products.v1.DeleteProductRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message proto.products.v1.DeleteProductRequest.
+ * Use `create(DeleteProductRequestSchema)` to create a new message.
+ */
+export const DeleteProductRequestSchema: GenMessage<DeleteProductRequest> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 9);
+
+/**
+ * @generated from message proto.products.v1.DeleteProductResponse
+ */
+export type DeleteProductResponse = Message<"proto.products.v1.DeleteProductResponse"> & {
+  /**
+   * @generated from field: bool succcess = 1;
+   */
+  succcess: boolean;
+};
+
+/**
+ * Describes the message proto.products.v1.DeleteProductResponse.
+ * Use `create(DeleteProductResponseSchema)` to create a new message.
+ */
+export const DeleteProductResponseSchema: GenMessage<DeleteProductResponse> = /*@__PURE__*/
+  messageDesc(file_products_v1_products, 10);
 
 /**
  * @generated from service proto.products.v1.ProductService
@@ -94,12 +248,36 @@ export const ProductService: GenService<{
     output: typeof GetAllProductsResponeSchema;
   },
   /**
+   * @generated from rpc proto.products.v1.ProductService.GetProduct
+   */
+  getProduct: {
+    methodKind: "unary";
+    input: typeof GetProductRequestSchema;
+    output: typeof GetProductResponseSchema;
+  },
+  /**
    * @generated from rpc proto.products.v1.ProductService.CreateProduct
    */
   createProduct: {
     methodKind: "unary";
     input: typeof CreateProductRequestSchema;
     output: typeof CreateProductResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.products.v1.ProductService.UpdateProduct
+   */
+  updateProduct: {
+    methodKind: "unary";
+    input: typeof UpdateProductRequestSchema;
+    output: typeof UpdateProductResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.products.v1.ProductService.DeleteProduct
+   */
+  deleteProduct: {
+    methodKind: "unary";
+    input: typeof DeleteProductRequestSchema;
+    output: typeof DeleteProductResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_products_v1_products, 0);

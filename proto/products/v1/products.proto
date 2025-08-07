@@ -3,25 +3,59 @@ syntax = "proto3";
 package proto.products.v1;
 option go_package = "myapp/api/products/v1;productsv1";
 
-
+message Product {
+  int64 id = 1;
+  string name = 2;
+  int64 price = 3;
+  optional string description = 4;
+}
 message CreateProductRequest {
   string name = 1;
+  int64 price = 2;
+  optional string description = 3;
 }
 
 message CreateProductResponse {
-  string name = 1;
-  int64 id = 2;
+  Product data = 1;
 }
 
 message GetAllProductsRequest {}
 
 message GetAllProductsRespone {
-  repeated CreateProductResponse products = 1;
+  repeated Product products = 1;
+}
+
+message GetProductRequest {
+  int64 id = 1;
+}
+
+message GetProductResponse {
+  Product data =1;
+}
+
+message UpdateProductRequest {
+  int64 id = 1;
+  optional string name = 2;
+  optional int64 price = 3;
+  optional string description = 4;
+}
+
+message UpdateProductResponse {
+  Product data = 1;
+}
+
+message DeleteProductRequest {
+  int64 id = 1;
+}
+
+message DeleteProductResponse {
+  bool succcess = 1;
 }
 
 service ProductService {
   rpc GetAllProducts(GetAllProductsRequest) returns (GetAllProductsRespone) {}
-  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
-
-  }
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
 }

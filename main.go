@@ -1,16 +1,31 @@
 package main
 
 import (
-	"database/sql"
-	"log"
+	"context"
+	"fmt"
 	"myapp/api/products/v1/productsv1connect"
+	"myapp/api/users/v1/usersv1connect"
 	"myapp/products"
+	productsrepo "myapp/repositories/products"
+	usersrepo "myapp/repositories/users"
+	"myapp/users"
+
 	"net/http"
 	"time"
+
+	"github.com/jackc/pgx/v5"
 
 	"github.com/rs/cors"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
+)
+
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "your_username"
+	password = "your_password"
+	dbname   = "sqlctest"
 )
 
 func newCORS() *cors.Cors {
@@ -52,10 +67,29 @@ func newCORS() *cors.Cors {
 	})
 }
 func main() {
+
+	conn, err := pgx.Connect(context.Background(), "postgres://your_username:your_password@localhost:5432/sqlctest?sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+
 	mux := http.NewServeMux()
-	path, handler := productsv1connect.NewProductServiceHandler(&products.ProductHandler{})
+
+	productsRepo := productsrepo.New(conn)
+	productServiceHandler := products.NewProductHandler(productsRepo)
+	path, handler := productsv1connect.NewProductServiceHandler(productServiceHandler)
+
+	usersRepo := usersrepo.New(conn)
+	userServiceHandler := users.NewUsersHandler(usersRepo, productsRepo)
+	usersPath, usersHandler := usersv1connect.NewUsersServiceHandler(userServiceHandler)
 
 	mux.Handle(path, handler)
+	mux.Handle(usersPath, usersHandler)
+
+	mux.HandleFunc("POST /upload", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "hello")
+	})
+
 	srv := &http.Server{
 		Addr: ":8080",
 		Handler: h2c.NewHandler(
@@ -67,17 +101,6 @@ func main() {
 		WriteTimeout:      5 * time.Minute,
 		MaxHeaderBytes:    8 * 1024, // 8KiB
 	}
-
-	// db conn
-	connStr := "postgres://postgres:your_password@localhost:5432/sqlctest?sslmode=disable"
-	dbConn, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatalf("failed to open connections : %v", err)
-	}
-	if err := dbConn.Ping(); err != nil {
-		log.Fatalf("failed to ping DB: %v", err)
-	}
-	
 
 	srv.ListenAndServe()
 }
