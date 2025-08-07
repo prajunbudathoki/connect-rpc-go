@@ -1,71 +1,91 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { productsClient } from "@/lib/api";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { useAppForm } from "@/components/inputs/form-context";
 
 export const Route = createFileRoute("/products/create")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(BigInt(0));
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await productsClient.createProduct({
-        name,
-        description,
-      });
-      toast.success("product created successfully");
-      navigate({ to: "/" });
-    } catch (error) {
-      console.error(error);
-      toast.error("failed to create product");
-    }
-  };
+  const form = useAppForm({
+    defaultValues: {
+      name: "",
+      price: BigInt(0),
+      description: "",
+    },
+    onSubmit: async ({ value }) => {
+      try {
+        await productsClient.createProduct({
+          name: value.name,
+          price: value.price,
+          description: value.description,
+        });
+        toast.success("Product created successfully");
+        navigate({ to: "/" });
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to create product");
+      }
+    },
+  });
+
   return (
     <div className="max-w-md mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6 text-center">
         Create Product using Connect RPC
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-5 ">
-        <input
-          type="text"
-          placeholder="Product name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="border rounded px-4 py-2 w-full "
+      <form.AppForm >
+        <form.AppField
+          name="name"
+          children={(field) => (
+            <field.TextField
+              label="Product Name"
+              placeholder="Enter product name"
+              value={field.state.value ?? ""}
+              onChange={(e) => field.handleChange(e.target.value)}
+              required
+            />
+          )}
         />
-        <input
-          type="number"
-          placeholder="Product price"
-          value={Number(price)}
-          onChange={(e) => setPrice(BigInt(e.target.value))}
-          required
-          className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <form.AppField
+          name="price"
+          children={(field) => (
+            <field.TextField
+              label="Product Price"
+              placeholder="Enter product price"
+              value={Number(field.state.value)}
+              onChange={(e) => field.handleChange(BigInt(e.target.value))}
+              required
+            />
+          )}
         />
-        <input
-          type="text"
-          placeholder="Product description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <form.AppField
+          name="description"
+          children={(field) => (
+            <field.TextField
+              label="Product Description"
+              placeholder="Enter product description"
+              value={field.state.value ?? ""}
+              onChange={(e) => field.handleChange(e.target.value)}
+            />
+          )}
         />
         <Button
-          type="submit"
-          variant="default"
           className="w-full py-2 font-semibold"
+          onClick={(e) => {
+            e.preventDefault();
+            form.handleSubmit();
+          }}
         >
           Create
         </Button>
-      </form>
+      </form.AppForm>
     </div>
   );
 }
